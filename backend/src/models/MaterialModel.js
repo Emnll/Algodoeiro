@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const materialSchema = new mongoose.Schema({
-    nome: { type: mongoose.Schema.Types.String, required:[true, "O nome do material é obrigatório"]},
-    foto: {type: mongoose.Schema.Types.String},
-    marca: {type: mongoose.Schema.Types.String},
-    tipo: {type: mongoose.Schema.Types.String},
-    cor: {type: mongoose.Schema.Types.String},
-    tex: {type: mongoose.Schema.Types.Number},
-    gramatura: {type: mongoose.Schema.Types.Number},
-    metragem: {type: mongoose.Schema.Types.Number},
-    composicao: {type: mongoose.Schema.Types.String},
+    nome: { type:String, required:[true, "O nome do material é obrigatório"]},
+    foto: {type: String},
+    marca: {type: String},
+    tipo: {type: String},
+    cor: {type: String},
+    tex: {type: Number},
+    gramatura: {type: Number},
+    metragem: {type: Number},
+    composicao: {type: String},
     
     
 
@@ -18,4 +18,4 @@ const materialSchema = new mongoose.Schema({
 
 const materialModel = mongoose.model("material", materialSchema);
 
-export { materialModel, materialSchema };
+module.exports = { materialModel, materialSchema };

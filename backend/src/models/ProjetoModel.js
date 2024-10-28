@@ -1,15 +1,16 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
+const {materialSchema} = require('./MaterialModel');
 
 const projetoSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId , required: [true, "o id do usuario é obrigátorio"]},
-    descricao: { type: mongoose.Schema.Types.String } ,
-    title: { type: mongoose.Schema.Types.String , required: [true, "o titulo eh obrigatorio"]},
-    inicio: {type: mongoose.Schema.Types.Date },
-    fim: {type: mongoose.Schema.Types.Date},
+    descricao: { type: String } ,
+    title: { type: String , required: [true, "o titulo eh obrigatorio"]},
+    inicio: {type: Date },
+    fim: {type: Date},
     materiais: [
         {
-            material: {type: mongoose.Schema.Types.materialSchema},
-            quantidade: {type: mongoose.Schema.Types.Number, required: true, min: 1}
+            material: [materialSchema],
+            quantidade: {type: Number, required: true, min: 1}
         }
     ]
 });
@@ -27,4 +28,4 @@ projetoSchema.set('toJSON', { virtuals: true });
 
 const projetoModel = mongoose.model("projeto", projetoSchema);
 
-export { projetoModel, projetoSchema };
+module.exports = { projetoModel, projetoSchema };
