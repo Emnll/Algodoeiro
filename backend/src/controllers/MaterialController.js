@@ -5,7 +5,7 @@ exports.getAllMateriais = async (req, res) => {
 
         res.status(200).json({
             status: 'success',
-            results: projetos.length,
+            results: materiais.length,
             data: {
                 materiais
             }
