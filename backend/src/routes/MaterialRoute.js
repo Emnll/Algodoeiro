@@ -1,17 +1,17 @@
 const express = require('express');
-const userController = require('../controllers/MaterialController');
+const materialController = require('../controllers/MaterialController');
 
 const router = express.Router();
 
 router
   .route('/')
-  .get(userController.getAllMateriais)
-  .post(userController.createMaterial);
+  .get(materialController.getAllMateriais)
+  .post(materialController.createMaterial);
 
 router
   .route('/:id')
-  .get(userController.getMaterial)
-  .patch(userController.updateMaterial)
-  .delete(userController.deleteMaterial);
+  .get(materialController.getMaterial)
+  .patch(materialController.updateMaterial)
+  .delete(materialController.deleteMaterial);
 
 module.exports = router;

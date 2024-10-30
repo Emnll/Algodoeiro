@@ -9,7 +9,7 @@ const projetoSchema = new mongoose.Schema({
     fim: {type: Date},
     materiais: [
         {
-            material: [materialSchema],
+            material: materialSchema,
             quantidade: {type: Number, required: true, min: 1}
         }
     ]
@@ -28,4 +28,4 @@ projetoSchema.set('toJSON', { virtuals: true });
 
 const projetoModel = mongoose.model("projeto", projetoSchema);
 
-module.exports = { projetoModel, projetoSchema };
+module.exports = projetoModel;
