@@ -4,9 +4,19 @@ const {materialSchema} = require('./MaterialModel');
 const projetoSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId , required: [true, "o id do usuario é obrigátorio"]},
     descricao: { type: String } ,
-    title: { type: String , required: [true, "o titulo eh obrigatorio"]},
+    title: { 
+        type: String, 
+        required: [true, "o titulo eh obrigatorio"]
+    },
     inicio: {type: Date },
     fim: {type: Date},
+    dificuldade: {
+        type: String,
+        enum: {
+            values: ['facil', 'medio', 'dificil'],
+            message: 'O valor está diferente dos aceitos'
+        }
+    },
     materiais: [
         {
             material: materialSchema,

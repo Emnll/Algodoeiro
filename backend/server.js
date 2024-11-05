@@ -1,31 +1,24 @@
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-const userRouter = require('./src/routes/UserRoute');
-const materialRouter = require('./src/routes/MaterialRoute');
-const projetoRoute = require('./src/routes/ProjetoRoute');
-const config = require('./config');
-const url = config.mongoUrl;
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-async function run() {
-  mongoose.connect(url)
-      .then(
-          () => console.log("Conectado corretamente ao servidor")
-      )
-      .catch(
-          (error) => console.log(error)
-      );
-}
-run().catch(console.dir);
+dotenv.config({ path: './config.env' });
+const app = require('./app');
+
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('DB connection successful!'))
+  .catch((err) => console.log('DB connection error:', err));
 
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
 });
-
-app.use(express.json());
-app.use('/users', userRouter );
-app.use('/material', materialRouter);
-app.use('/projeto', projetoRoute);

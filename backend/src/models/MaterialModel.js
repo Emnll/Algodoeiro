@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const materialSchema = new mongoose.Schema({
-    nome: { type:String, required:[true, "O nome do material é obrigatório"]},
+    nome: { 
+        type:String, 
+        required:[true, "O nome do material é obrigatório"]
+    },
     foto: {type: String},
     marca: {type: String},
     cor: {type: String},
@@ -9,6 +12,7 @@ const materialSchema = new mongoose.Schema({
     gramatura: {type: Number},
     metragem: {type: Number},
     composicao: {type: String},
+    estoque: {type: Number}
         
 });
 
